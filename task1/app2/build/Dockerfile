@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql
 
 # Copy the local Laravel project files to the container
-COPY . .
-
+COPY ./src/ .
+COPY ./src/.env .
 # Install Composer and Laravel dependencies
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 

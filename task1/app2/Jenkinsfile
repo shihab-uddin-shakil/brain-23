@@ -10,7 +10,7 @@ pipeline {
 
                         sshagent(['79a4420b-3683-4745-a8a1-9e27b796f7b3']) {
                             sh '''
-                            ssh shihab@45.120.115.246 "echo "server running....""
+                            ssh shihab@192.168.1.12 "echo "server running....""
                             '''
                
                         }
@@ -36,8 +36,8 @@ pipeline {
 
                        sshagent(['79a4420b-3683-4745-a8a1-9e27b796f7b3']) {
                             sh '''
-                            ssh shihab@45.120.115.246 "
-                            cd /home/shihab/Documents/dcl-deploy-project/dclWebsite-frontend-dev &&
+                            ssh shihab@192.168.1.12 "
+                            cd /home/shihab/Documents/jenkins-workspace/brain-23 &&
                             sudo git reset .  && 
                             sudo git clean -df &&
                             sudo git stash &&
@@ -69,9 +69,9 @@ pipeline {
 
                        sshagent(['79a4420b-3683-4745-a8a1-9e27b796f7b3']) {
                             sh '''
-                            ssh shihab@45.120.115.246 "
-                                   cd /home/shihab/Documents/dcl-deploy-project/dclWebsite-frontend-dev/deployment &&
-                                   sudo ./build-and-test.bash
+                            ssh shihab@192.168.1.12 "
+                                   cd /home/shihab/Documents/jenkins-workspace/brain-23/task1/app2 &&
+                                   sudo ./build-test.bash
                             
                             "
                             '''
@@ -99,11 +99,9 @@ pipeline {
 
                        sshagent(['79a4420b-3683-4745-a8a1-9e27b796f7b3']) {
                             sh '''
-                            ssh shihab@45.120.115.246 "
-                                    cd /home/shihab/Documents/dcl-deploy-project/dclWebsite-frontend-dev &&
-                                    sudo docker rm dcl-website-frontend-dev -f &&
-                                    sudo docker compose up -d --build &&
-                                    sudo docker system prune -af
+                            ssh shihab@192.168.1.12 "
+                                    cd /home/shihab/Documents/jenkins-workspace/brain-23/task1/app2 &&
+                                    sudo kubectl apply -f deploy 
                             
                             "
                             '''
